@@ -1,6 +1,8 @@
 A minimalistic Zig experiment using game mechanics and Raylib.
 ---
 
+![Screenshot](./game.png)
+
 SETUP & QUICK START
 -------------------
 
