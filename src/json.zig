@@ -10,7 +10,9 @@ pub const GameSettings = struct {
         allocator: std.mem.Allocator,
         json_slice: []const u8,
     ) !std.json.Parsed(GameSettings) {
-        return std.json.parseFromSlice(GameSettings, allocator, json_slice, .{});
+        return std.json.parseFromSlice(
+            GameSettings, allocator, json_slice, .{}
+        );
     }
 
     pub fn loadFileAttributes(
@@ -24,6 +26,9 @@ pub const GameSettings = struct {
         const json_slice = try file.readToEndAlloc(allocator, max_file_size);
         errdefer allocator.free(json_slice);
 
-        return .{ json_slice, try parseFileAttributes(allocator, json_slice) };
+        return .{
+            json_slice,
+            try parseFileAttributes(allocator, json_slice),
+        };
     }
 };

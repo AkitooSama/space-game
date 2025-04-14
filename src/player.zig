@@ -6,7 +6,10 @@ pub const Player = struct {
     gravity: f32 = 80,
 
     pub fn init(x: f32, y: f32) Player {
-        return .{ .pos = .{ .x = x, .y = y }, .gravity = 80 };
+        return .{
+            .pos = .{ .x = x, .y = y },
+            .gravity = 80,
+        };
     }
 
     pub fn update(self: *Player) void {
