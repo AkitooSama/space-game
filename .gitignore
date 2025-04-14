@@ -1,0 +1,18 @@
+# Build output
+zig-out/
+*.o
+*.a
+
+# Editor temp files
+*.swp
+*.swo
+*.tmp
+*.log
+.DS_Store
+.vscode/
+
+# Internal/dev files
+src/player.zig
+src/root.zig
+test.zig
+.zig-cache/
