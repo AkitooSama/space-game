@@ -15,7 +15,6 @@ fn makeRect(pos: [2]f32, size: [2]f32) struct { pos: Vector2, size: Vector2 } {
 pub fn main() !void {
     const allocator = std.heap.page_allocator;
 
-    // Load and parse settings from JSON (bounded read)
     const json_slice, const parsed = try my_json.GameSettings.loadFileAttributes("src/settings.json", allocator);
     const settings = parsed.value;
     defer {
@@ -32,16 +31,13 @@ pub fn main() !void {
 
     rl.SetTargetFPS(settings.fps);
 
-    // Static buffer for rendering text
     var text_buf: [64]u8 = undefined;
 
-    // Init player at center of screen
     var p = player.Player.init(
         @divTrunc(settings.screen_width, 2),
         @divTrunc(settings.screen_height, 2),
     );
 
-    // Setup 2D camera
     var camera = rl.Camera2D{
         .offset = .{
             .x = @divTrunc(settings.screen_width, 2),
@@ -63,14 +59,12 @@ pub fn main() !void {
         rl.ClearBackground(rl.BLACK);
         rl.BeginMode2D(camera);
 
-        // Draw a static platform
         const rect = makeRect([2]f32{30, 350}, [2]f32{150, 50});
         rl.DrawRectangleV(rect.pos, rect.size, rl.DARKBROWN);
 
         rl.DrawCircleV(p.pos, 20, rl.DARKGRAY);
         rl.EndMode2D();
 
-        // Display player position
         const len = try std.fmt.bufPrint(&text_buf, "x:{}, y:{}", .{
             @as(i32, @intFromFloat(p.pos.x)),
             @as(i32, @intFromFloat(p.pos.y)),
