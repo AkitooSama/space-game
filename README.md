@@ -27,6 +27,7 @@ PROJECT STRUCTURE
 ```
 src/
 |-- main.zig        : Core logic entry
+|-- player.zig      : Player logic
 |-- json.zig        : Config loader
 |-- settings.json   : Game parameters
 ```
