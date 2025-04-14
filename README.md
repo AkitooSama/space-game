@@ -14,19 +14,21 @@ Requirements:
 * Raylib auto-fetched via build.zig.zon
 
 Run:
+```
     git clone https://github.com/AkitooSama/space-game.git
     cd space-game
     zig build run
-
+```
 ---
 
 PROJECT STRUCTURE
 -----------------
+```
 src/
 |-- main.zig        : Core logic entry
 |-- json.zig        : Config loader
 |-- settings.json   : Game parameters
-
+```
 Note: Scratch files (root.zig, test.zig) excluded - experimental use only.
 
 ---
