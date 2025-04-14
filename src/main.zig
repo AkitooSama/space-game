@@ -13,16 +13,14 @@ fn makeRect(pos: [2]f32, size: [2]f32) struct { pos: Vector2, size: Vector2 } {
 }
 
 pub fn main() !void {
-    const allocator = std.heap.page_allocator;
+    var arena = std.heap.ArenaAllocator.init(std.heap.page_allocator);
+    defer arena.deinit();
+    const allocator = arena.allocator();
 
-    const json_slice, const parsed =
-        try my_json.GameSettings.loadFileAttributes("src/settings.json", allocator);
-    const settings = parsed.value;
+    var settings_loaded = try my_json.loadFileAttributes("src/settings.json", allocator);
+    defer settings_loaded.deinit(allocator);
 
-    defer {
-        parsed.deinit();
-        allocator.free(json_slice);
-    }
+    const settings = settings_loaded.data.value;
 
     rl.InitWindow(
         @as(c_int, @intFromFloat(settings.screen_width)),
@@ -62,9 +60,7 @@ pub fn main() !void {
 
         const rect = makeRect([2]f32{ 30, 350 }, [2]f32{ 150, 50 });
         rl.DrawRectangleV(rect.pos, rect.size, rl.DARKBROWN);
-
         rl.DrawCircleV(p.pos, 20, rl.DARKGRAY);
-
         rl.EndMode2D();
 
         const len = try std.fmt.bufPrint(

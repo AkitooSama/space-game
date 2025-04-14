@@ -2,8 +2,8 @@ const rl = @cImport(@cInclude("raylib.h"));
 const Vector2 = rl.Vector2;
 
 pub const Player = struct {
+    gravity: f32,
     pos: Vector2,
-    gravity: f32 = 80,
 
     pub fn init(x: f32, y: f32) Player {
         return .{

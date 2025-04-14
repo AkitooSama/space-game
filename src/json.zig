@@ -14,21 +14,31 @@ pub const GameSettings = struct {
             GameSettings, allocator, json_slice, .{}
         );
     }
+};
 
-    pub fn loadFileAttributes(
-        filepath: []const u8,
-        allocator: std.mem.Allocator,
-    ) !struct { []const u8, std.json.Parsed(GameSettings) } {
-        const file = try std.fs.cwd().openFile(filepath, .{});
-        defer file.close();
+pub const LoadedSettings = struct {
+    raw: []const u8,
+    data: std.json.Parsed(GameSettings),
 
-        const max_file_size = 4 * 1024;
-        const json_slice = try file.readToEndAlloc(allocator, max_file_size);
-        errdefer allocator.free(json_slice);
-
-        return .{
-            json_slice,
-            try parseFileAttributes(allocator, json_slice),
-        };
+    pub fn deinit(self: *LoadedSettings, allocator: std.mem.Allocator) void {
+        self.data.deinit();
+        allocator.free(self.raw);
     }
 };
+
+pub fn loadFileAttributes(
+    filepath: []const u8,
+    allocator: std.mem.Allocator,
+) !LoadedSettings {
+    const file = try std.fs.cwd().openFile(filepath, .{});
+    defer file.close();
+
+    const stat = try file.stat();
+    const json_slice = try file.readToEndAlloc(allocator, stat.size);
+    errdefer allocator.free(json_slice);
+
+    return LoadedSettings{
+        .raw = json_slice,
+        .data = try GameSettings.parseFileAttributes(allocator, json_slice),
+    };
+}
