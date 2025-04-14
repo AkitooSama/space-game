@@ -1,5 +1,5 @@
 .{
-    .name = "space-game",
+    .name = .space_game,
     .version = "0.0.0",
     .dependencies = .{
         .raylib = .{
@@ -12,4 +12,5 @@
         "build.zig.zon",
         "src",
     },
+    .fingerprint = 0x485d4b06a1b0b7c7,
 }
