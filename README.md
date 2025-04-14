@@ -25,7 +25,7 @@ src/
 |-- json.zig        : Config loader
 |-- settings.json   : Game parameters
 ```
-Note: Scratch files (root.zig, test.zig) excluded - experimental use only.
+* Note: Scratch files `root.zig` and `test.zig` excluded - experimental use only.
 ---
 
 LICENSE
