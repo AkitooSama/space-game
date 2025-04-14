@@ -42,5 +42,5 @@ Why this project?
 
 🪪 License
 ----------
-
-MIT or public domain — free to use, clone, and idk learn from it?
+This project is licensed under the [MIT License](./LICENSE).
+public domain — free to use, clone, and idk learn from it?
