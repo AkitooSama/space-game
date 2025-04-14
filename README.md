@@ -1,4 +1,3 @@
-"""
 🚀 space-game — learning Zig via game dev
 =========================================
 
@@ -12,7 +11,7 @@ src/
 ├── json.zig        # JSON config loader
 ├── settings.json   # External game settings
 
-> Files like `player.zig`, `root.zig`, and `test.zig` are ignored.  
+> Files like `root.zig`, and `test.zig` are ignored.  
 > They're used for scratch logic and experimentation.
 
 
@@ -39,6 +38,9 @@ Why this project?
 
 > This is an experiment-first repo — not a production-grade game engine.
 
+I occasionally stream while working on this project.  
+Watch the playlist here:  
+-> https://youtube.com/playlist?list=PLmLq4SsQiSlPreCZjS0s23ReA0nJLkfJZ&si=cSNMM9FneMC5K5xV
 
 🪪 License
 ----------
