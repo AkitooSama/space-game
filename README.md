@@ -6,10 +6,12 @@ It's a **Zig learning quest**, where I use game mechanics and Raylib to explore 
 
 Project Structure
 -----------------
+```
 src/
 ├── main.zig        # Entry point
 ├── json.zig        # JSON config loader
 ├── settings.json   # External game settings
+```
 
 > Files like `root.zig`, and `test.zig` are ignored.  
 > They're used for scratch logic and experimentation.
